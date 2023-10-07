@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     bool isJumping;
 
     public Animator anim;
+    public bool isJump;
 
     void Start()
     {
@@ -41,9 +42,11 @@ public class Player : MonoBehaviour
 
             if(h != 0 || v != 0)
             {
-                transform.rotation = Quaternion.LookRotation(rb.velocity);
-
-                anim.SetBool("isRun", true);
+                if(!isJump)
+                {
+                    transform.rotation = Quaternion.LookRotation(rb.velocity);
+                    anim.SetBool("isRun", true);
+                }
             }
             else
             {
@@ -59,7 +62,11 @@ public class Player : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                rb.AddForce(Vector3.up * jumpForce);
+                if(!isJump)
+                {
+                    isJump = true;
+                    rb.AddForce(Vector3.up * jumpForce);
+                }
             }
         }
     }
@@ -67,6 +74,11 @@ public class Player : MonoBehaviour
     void EnablePlaying()
     {
         isPlaying = true;
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+        isJump = false;
     }
 
     void OnTriggerEnter(Collider other)

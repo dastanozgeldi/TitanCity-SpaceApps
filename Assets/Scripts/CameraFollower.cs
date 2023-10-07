@@ -23,7 +23,7 @@ public class CameraFollower : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*targetPosition = playerTransform.position + offset;
+        targetPosition = playerTransform.position + offset;
 
         float smoothX = Mathf.Lerp(transform.position.x, targetPosition.x, smoothSpeedX * Time.fixedDeltaTime);
         float smoothY = Mathf.Lerp(transform.position.y, targetPosition.y, smoothSpeedY * Time.fixedDeltaTime);
@@ -31,12 +31,6 @@ public class CameraFollower : MonoBehaviour
 
         Vector3 smoothedPosition = new Vector3(smoothX, smoothY, smoothZ);
         transform.position = smoothedPosition;
-
-        float mouseX = Input.GetAxis("Mouse X");
-        float mouseY = Input.GetAxis("Mouse Y");
-
-        transform.Rotate(Vector3.up * mouseX * rotationSpeed);
-        transform.Rotate(Vector3.up * mouseY * rotationSpeed);*/
 
     }
 }
