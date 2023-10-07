@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
     public float[] videoTimes;
     public GameObject[] videoObjects;
 
+    public Player player;
+
     void Awake()
     {
         instance = this;
@@ -22,11 +24,13 @@ public class UIController : MonoBehaviour
     public void RobotButton()
     {
         robotPanel.SetActive(true);
+        player.isPlaying = false;
     }
 
     public void RobotCloseButton()
     {
         robotPanel.SetActive(false);
+        player.isPlaying = true;
     }
 
     public void MapButton()
