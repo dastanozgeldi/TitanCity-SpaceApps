@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public Animator anim;
     public bool isJump;
 
+    public GameObject[] cityElements;
+
     void Start()
     {
         UIController.instance.OnPlayVideo(index);
@@ -88,6 +90,7 @@ public class Player : MonoBehaviour
             isPlaying = false;
             UIController.instance.OnPlayVideo(index);
             Invoke("EnablePlaying", UIController.instance.videoTimes[index]);
+            cityElements[index].SetActive(true);
             index++;
 
             if(index<UIController.instance.videos.Length)
