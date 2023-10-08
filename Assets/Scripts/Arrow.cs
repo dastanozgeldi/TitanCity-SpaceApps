@@ -9,6 +9,5 @@ public class Arrow : MonoBehaviour
     void Update()
     {
         transform.LookAt(target);
-        //transform.rotation = Quaternion.Euler(90f, transform.rotation.y, transform.rotation.z);
     }
 }

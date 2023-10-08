@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
                 index++;
                 maxCount = maxCounts[index-1];
                 arrow.SetActive(true);
-                arrow.GetComponent<Arrow>().target = UIController.instance.videoObjects[index-1].transform;
+                //arrow.GetComponent<Arrow>().target = UIController.instance.videoObjects[index-1].transform;
             }
         }
     }

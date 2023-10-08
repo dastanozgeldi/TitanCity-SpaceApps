@@ -48,6 +48,10 @@ public class UIController : MonoBehaviour
     public void OnPlayVideo(int index)
     {
         videos[index].SetActive(true);
+        if(index>0)
+        {
+            videos[index-1].SetActive(false);
+        }
         Destroy(videos[index], videoTimes[index]);
     }
 }
