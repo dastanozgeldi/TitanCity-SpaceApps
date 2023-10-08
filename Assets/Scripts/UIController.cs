@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
     public GameObject[] videoObjects;
 
     public Player player;
+    public GameObject backgroundSound;
 
     void Awake()
     {
@@ -23,12 +24,14 @@ public class UIController : MonoBehaviour
 
     public void RobotButton()
     {
+        backgroundSound.SetActive(false);
         robotPanel.SetActive(true);
         player.isPlaying = false;
     }
 
     public void RobotCloseButton()
     {
+        backgroundSound.SetActive(true);
         robotPanel.SetActive(false);
         player.isPlaying = true;
     }
@@ -48,10 +51,7 @@ public class UIController : MonoBehaviour
     public void OnPlayVideo(int index)
     {
         videos[index].SetActive(true);
-        if(index>0)
-        {
-            videos[index-1].SetActive(false);
-        }
+        Debug.Log(index);
         Destroy(videos[index], videoTimes[index]);
     }
 }

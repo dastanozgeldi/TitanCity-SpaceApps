@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
     {
         UIController.instance.OnPlayVideo(index);
         Invoke("EnablePlaying", UIController.instance.videoTimes[index]);
-        index++;
     }
 
     void Update()
@@ -96,10 +95,11 @@ public class Player : MonoBehaviour
             isPlaying = false;
             UIController.instance.OnPlayVideo(index);
             Invoke("EnablePlaying", UIController.instance.videoTimes[index]);
-            cityElements[index-2].SetActive(true);
+            cityElements[index-1].SetActive(true);
             arrow.SetActive(false);
             yearCount+=200;
             yearText.text = "Year: " + yearCount.ToString();
+            Destroy(other.gameObject);
         }
         else if(other.CompareTag("Crystal"))
         {
@@ -109,7 +109,7 @@ public class Player : MonoBehaviour
             maxCount--;
             if(maxCount == 0)
             {
-                UIController.instance.videoObjects[index-1].SetActive(true);
+                UIController.instance.videoObjects[index].SetActive(true);
                 index++;
                 maxCount = maxCounts[index-1];
                 arrow.SetActive(true);
