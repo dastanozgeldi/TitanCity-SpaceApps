@@ -10,6 +10,8 @@ public class ChatGPTManager : MonoBehaviour
     private OpenAIApi openai = new OpenAIApi();
     private List<ChatMessage> messages = new List<ChatMessage>();
 
+    public TextToSpeechRequest textToSpeechRequest;
+
     public TextMeshProUGUI chatText;
 
     public async void AskChatGPT(string newText) {
@@ -38,22 +40,12 @@ public class ChatGPTManager : MonoBehaviour
 
             Debug.Log(chatResponse.Content);
             chatText.text = chatResponse.Content;
+            StartCoroutine(textToSpeechRequest.GetAudioBytes(chatResponse.Content));
         }
-
-        // foreach (var message in messages) {
-        //     Debug.Log("yo: " + message.Content);
-        // }
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         chatText.text = "Hi! I'm your drone pet Aqtos. Welcome to Titan City! We're going to build it from scratch. Today is 2023, our task is to fully terraform Titan by 3023. Let's get started!";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
