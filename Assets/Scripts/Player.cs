@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -21,16 +22,21 @@ public class Player : MonoBehaviour
 
     public GameObject[] cityElements;
 
+    public TextMeshProUGUI crystalText;
+    public int crystalCount;
+    public int maxCount;
+    public int[] maxCounts;
+
+    public TextMeshProUGUI yearText;
+    public int yearCount;
+
+    public GameObject arrow;
+
     void Start()
     {
         UIController.instance.OnPlayVideo(index);
         Invoke("EnablePlaying", UIController.instance.videoTimes[index]);
         index++;
-
-        if(index<UIController.instance.videos.Length)
-        {
-            UIController.instance.videoObjects[index-1].SetActive(true);
-        }
     }
 
     void Update()
@@ -90,12 +96,24 @@ public class Player : MonoBehaviour
             isPlaying = false;
             UIController.instance.OnPlayVideo(index);
             Invoke("EnablePlaying", UIController.instance.videoTimes[index]);
-            cityElements[index].SetActive(true);
-            index++;
-
-            if(index<UIController.instance.videos.Length)
+            cityElements[index-2].SetActive(true);
+            arrow.SetActive(false);
+            yearCount+=200;
+            yearText.text = "Year: " + yearCount.ToString();
+        }
+        else if(other.CompareTag("Crystal"))
+        {
+            Destroy(other.gameObject);
+            crystalCount++;
+            crystalText.text = crystalCount.ToString();
+            maxCount--;
+            if(maxCount == 0)
             {
                 UIController.instance.videoObjects[index-1].SetActive(true);
+                index++;
+                maxCount = maxCounts[index-1];
+                arrow.SetActive(true);
+                arrow.GetComponent<Arrow>().target = UIController.instance.videoObjects[index-1].transform;
             }
         }
     }
